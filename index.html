@@ -1,0 +1,394 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Backbranding | El respaldo de nuevos negocios</title>
+  <meta name="description" content="Backbranding es la empresa de desarrollo tecnológico que respalda nuevos negocios. Escuchamos proyectos para invertir, construir y crecer juntos.">
+  <link rel="icon" href="assets/backbranding-logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b0d10;
+      --bg-2: #111418;
+      --line: #23282f;
+      --text: #f2f4f6;
+      --muted: #9aa3ad;
+      --accent: #866a9f;        /* morado de artical.xyz */
+      --accent-text: #a586c0;   /* tono claro para texto sobre fondo oscuro */
+      --accent-ink: #ffffff;
+      --radius: 14px;
+      --max: 1120px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Inter", system-ui, sans-serif;
+      font-size: 17px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; }
+    h1, h2, h3 { font-family: "Space Grotesk", sans-serif; line-height: 1.1; margin: 0; letter-spacing: -0.02em; }
+    .wrap { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+    .eyebrow {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 13px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--accent-text);
+    }
+    section { padding: 112px 0; border-top: 1px solid var(--line); }
+
+    /* Nav */
+    header {
+      position: sticky; top: 0; z-index: 10;
+      background: rgba(11, 13, 16, 0.82);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav { display: flex; align-items: center; justify-content: space-between; height: 72px; }
+    .nav img { height: 30px; width: auto; display: block; }
+    .nav ul { display: flex; gap: 32px; list-style: none; margin: 0; padding: 0; font-size: 15px; }
+    .nav ul a { text-decoration: none; color: var(--muted); transition: color .2s; }
+    .nav ul a:hover { color: var(--text); }
+    .btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--accent); color: var(--accent-ink);
+      font-weight: 600; font-size: 15px; text-decoration: none;
+      padding: 13px 22px; border-radius: 999px; border: 0; cursor: pointer;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .btn:hover { transform: translateY(-1px); box-shadow: 0 8px 24px -8px rgba(134, 106, 159, .6); }
+    .btn-ghost { background: transparent; color: var(--text); border: 1px solid var(--line); }
+    .btn-ghost:hover { box-shadow: none; border-color: var(--muted); }
+
+    /* Hero */
+    .hero { padding: 120px 0 128px; border-top: 0; position: relative; overflow: hidden; }
+    .hero::before {
+      content: ""; position: absolute; inset: 0;
+      background-image:
+        linear-gradient(var(--line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--line) 1px, transparent 1px);
+      background-size: 56px 56px;
+      mask-image: radial-gradient(ellipse 70% 60% at 70% 40%, #000 20%, transparent 75%);
+      -webkit-mask-image: radial-gradient(ellipse 70% 60% at 70% 40%, #000 20%, transparent 75%);
+      opacity: .55;
+    }
+    .hero-grid { position: relative; display: grid; grid-template-columns: 1.25fr 1fr; gap: 56px; align-items: center; }
+    .hero h1 { font-size: clamp(42px, 6.4vw, 80px); margin: 20px 0 24px; }
+    .hero h1 em { font-style: normal; color: var(--accent-text); }
+    .hero p.lead { font-size: 20px; color: var(--muted); max-width: 560px; margin: 0 0 36px; }
+    .hero-cta { display: flex; gap: 14px; flex-wrap: wrap; }
+    .backbone { width: 100%; height: auto; }
+    .backbone .node { fill: var(--bg-2); stroke: var(--muted); stroke-width: 1.5; }
+    .backbone .node.on { fill: var(--accent-text); stroke: var(--accent-text); }
+    .backbone .link { stroke: var(--line); stroke-width: 1.5; }
+    .backbone .spine { stroke: var(--accent-text); stroke-width: 3; }
+    .backbone text { fill: var(--muted); font: 600 12px "Space Grotesk", sans-serif; letter-spacing: .12em; }
+
+    /* Section heads */
+    .head { max-width: 720px; margin-bottom: 56px; }
+    .head h2 { font-size: clamp(32px, 4.4vw, 52px); margin-top: 16px; }
+    .head p { color: var(--muted); font-size: 19px; margin: 20px 0 0; }
+
+    /* Pillars */
+    .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .card {
+      background: var(--bg-2); border: 1px solid var(--line); border-radius: var(--radius);
+      padding: 32px;
+    }
+    .card .num { font-family: "Space Grotesk", sans-serif; color: var(--accent-text); font-weight: 600; font-size: 14px; }
+    .card h3 { font-size: 24px; margin: 18px 0 12px; }
+    .card p { color: var(--muted); margin: 0; font-size: 16px; }
+
+    /* Portfolio */
+    .ventures { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+    .venture {
+      display: flex; flex-direction: column; justify-content: space-between; gap: 40px;
+      min-height: 300px; padding: 36px; border-radius: var(--radius);
+      border: 1px solid var(--line); background: var(--bg-2);
+      text-decoration: none; transition: border-color .2s, transform .2s;
+    }
+    .venture:hover { border-color: var(--muted); transform: translateY(-2px); }
+    .venture .tag {
+      display: inline-block; font-size: 13px; color: var(--muted);
+      border: 1px solid var(--line); border-radius: 999px; padding: 4px 12px;
+    }
+    .venture h3 { font-size: 36px; margin: 20px 0 12px; }
+    .venture p { color: var(--muted); margin: 0; max-width: 420px; }
+    .venture .go { font-weight: 600; font-size: 15px; display: flex; align-items: center; gap: 8px; }
+    .venture .go span { color: var(--accent-text); transition: transform .2s; }
+    .venture:hover .go span { transform: translateX(4px); }
+
+    /* Criteria + process */
+    .split { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; }
+    .list { list-style: none; margin: 0; padding: 0; }
+    .list li { display: grid; grid-template-columns: 28px 1fr; gap: 14px; padding: 20px 0; border-bottom: 1px solid var(--line); }
+    .list li:first-child { border-top: 1px solid var(--line); }
+    .list .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--accent-text); margin-top: 9px; }
+    .list strong { display: block; font-weight: 600; }
+    .list span { color: var(--muted); font-size: 16px; }
+    .steps { counter-reset: s; list-style: none; margin: 0; padding: 0; }
+    .steps li { counter-increment: s; position: relative; padding: 0 0 32px 64px; }
+    .steps li::before {
+      content: counter(s, decimal-leading-zero);
+      position: absolute; left: 0; top: 0;
+      width: 44px; height: 44px; border-radius: 50%;
+      border: 1px solid var(--line); display: grid; place-items: center;
+      font: 600 14px "Space Grotesk", sans-serif; color: var(--accent-text);
+    }
+    .steps li:not(:last-child)::after {
+      content: ""; position: absolute; left: 22px; top: 48px; bottom: 4px; width: 1px; background: var(--line);
+    }
+    .steps strong { display: block; font-size: 18px; margin-top: 8px; }
+    .steps span { color: var(--muted); font-size: 16px; }
+
+    /* Contact */
+    .contact-box {
+      display: grid; grid-template-columns: 1fr 1.1fr; gap: 56px;
+      background: var(--bg-2); border: 1px solid var(--line); border-radius: 20px; padding: 56px;
+    }
+    .contact-box h2 { font-size: clamp(32px, 4vw, 48px); margin: 16px 0 20px; }
+    .contact-box p { color: var(--muted); margin: 0; }
+    form { display: grid; gap: 16px; }
+    .row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    label { display: grid; gap: 8px; font-size: 14px; color: var(--muted); }
+    input, select, textarea {
+      width: 100%; font: inherit; font-size: 16px; color: var(--text);
+      background: var(--bg); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px;
+    }
+    textarea { min-height: 130px; resize: vertical; }
+    input:focus, select:focus, textarea:focus { outline: none; border-color: var(--accent-text); }
+    form .btn { justify-self: start; margin-top: 4px; }
+    .note { font-size: 13px; color: var(--muted); }
+
+    footer { border-top: 1px solid var(--line); padding: 40px 0; color: var(--muted); font-size: 14px; }
+    .foot { display: flex; justify-content: space-between; align-items: center; gap: 24px; flex-wrap: wrap; }
+    .foot img { height: 22px; opacity: .8; }
+    .foot nav { display: flex; gap: 24px; }
+    .foot a { text-decoration: none; }
+    .foot a:hover { color: var(--text); }
+
+    @media (max-width: 900px) {
+      section { padding: 80px 0; }
+      .hero { padding: 72px 0 88px; }
+      .hero-grid, .split, .contact-box { grid-template-columns: 1fr; }
+      .hero-visual { max-width: 420px; }
+      .cards, .ventures { grid-template-columns: 1fr; }
+      .contact-box { padding: 32px 24px; gap: 36px; }
+      .nav ul { display: none; }
+    }
+    @media (max-width: 560px) {
+      .wrap { padding: 0 16px; }
+      .row { grid-template-columns: 1fr; }
+      .nav .btn { padding: 10px 16px; font-size: 14px; }
+      .nav img { height: 24px; }
+      .venture { padding: 28px 24px; min-height: 0; }
+      .card { padding: 26px 22px; }
+    }
+    @media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="wrap nav">
+      <a href="#inicio" aria-label="Backbranding, inicio"><img src="assets/backbranding-logo.png" alt="Backbranding"></a>
+      <ul>
+        <li><a href="#enfoque">Enfoque</a></li>
+        <li><a href="#portafolio">Portafolio</a></li>
+        <li><a href="#buscamos">Qué buscamos</a></li>
+      </ul>
+      <a class="btn" href="#propuesta">Propón un proyecto</a>
+    </div>
+  </header>
+
+  <main id="inicio">
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <div class="eyebrow">Desarrollo tecnológico</div>
+          <h1>El respaldo de los <em>nuevos negocios</em>.</h1>
+          <p class="lead">Backbranding construye, invierte y acompaña empresas que tienen a la tecnología en el centro. Ponemos la base para que una buena idea se convierta en un negocio que funciona.</p>
+          <div class="hero-cta">
+            <a class="btn" href="#propuesta">Cuéntanos tu proyecto <span aria-hidden="true">→</span></a>
+            <a class="btn btn-ghost" href="#portafolio">Ver portafolio</a>
+          </div>
+        </div>
+        <div class="hero-visual" aria-hidden="true">
+          <svg class="backbone" viewBox="0 0 400 360">
+            <line class="link" x1="80" y1="70" x2="200" y2="300"/>
+            <line class="link" x1="200" y1="50" x2="200" y2="300"/>
+            <line class="link" x1="320" y1="70" x2="200" y2="300"/>
+            <line class="link" x1="130" y1="170" x2="200" y2="300"/>
+            <line class="link" x1="270" y1="170" x2="200" y2="300"/>
+            <line class="spine" x1="40" y1="300" x2="360" y2="300"/>
+            <circle class="node on" cx="80" cy="70" r="11"/>
+            <circle class="node on" cx="200" cy="50" r="11"/>
+            <circle class="node" cx="320" cy="70" r="11"/>
+            <circle class="node" cx="130" cy="170" r="8"/>
+            <circle class="node" cx="270" cy="170" r="8"/>
+            <circle class="node on" cx="200" cy="300" r="16"/>
+            <text x="200" y="340" text-anchor="middle">BACKBRANDING</text>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <section id="enfoque">
+      <div class="wrap">
+        <div class="head">
+          <div class="eyebrow">Enfoque</div>
+          <h2>Somos el respaldo, no el escaparate.</h2>
+          <p>El nombre lo dice: estamos detrás. Aportamos lo que un negocio nuevo necesita para arrancar bien y dejamos que cada marca brille con su propio nombre.</p>
+        </div>
+        <div class="cards">
+          <article class="card">
+            <div class="num">01</div>
+            <h3>Tecnología</h3>
+            <p>Diseñamos y desarrollamos el producto, la infraestructura y los sistemas que hacen que el negocio opere y escale.</p>
+          </article>
+          <article class="card">
+            <div class="num">02</div>
+            <h3>Inversión</h3>
+            <p>Invertimos en proyectos con potencial real. Capital y trabajo puestos en el mismo lado de la mesa.</p>
+          </article>
+          <article class="card">
+            <div class="num">03</div>
+            <h3>Operación</h3>
+            <p>Procesos, ventas y marketing probados en nuestras propias empresas, aplicados desde el primer día.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="portafolio">
+      <div class="wrap">
+        <div class="head">
+          <div class="eyebrow">Portafolio</div>
+          <h2>Negocios que respaldamos.</h2>
+          <p>Empresas distintas, una misma base: tecnología bien aplicada.</p>
+        </div>
+        <div class="ventures">
+          <a class="venture" href="https://artical.xyz" target="_blank" rel="noopener">
+            <div>
+              <span class="tag">Tecnología comercial</span>
+              <h3>Artical</h3>
+              <p>Sistemas operativos comerciales: procesos, CRM, automatización y equipo para que marketing y ventas trabajen como uno solo.</p>
+            </div>
+            <div class="go">artical.xyz <span>→</span></div>
+          </a>
+          <a class="venture" href="https://cafista.xyz" target="_blank" rel="noopener">
+            <div>
+              <span class="tag">Consumo · Cold brew</span>
+              <h3>Cafista</h3>
+              <p>Cold brew de especialidad. Una marca de consumo construida con la misma disciplina digital y operativa.</p>
+            </div>
+            <div class="go">cafista.xyz <span>→</span></div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section id="buscamos">
+      <div class="wrap split">
+        <div>
+          <div class="head">
+            <div class="eyebrow">Qué buscamos</div>
+            <h2>Escuchamos nuevas ideas de negocio.</h2>
+            <p>Estamos abiertos a conocer proyectos en los que podamos invertir y construir. Esto es lo que nos hace decir que sí:</p>
+          </div>
+          <ul class="list">
+            <li><i class="dot"></i><div><strong>Un problema real</strong><span>Clientes que hoy pagan, o pagarían, por resolverlo.</span></div></li>
+            <li><i class="dot"></i><div><strong>La tecnología como palanca</strong><span>Donde construir bien cambia el resultado del negocio.</span></div></li>
+            <li><i class="dot"></i><div><strong>Un equipo comprometido</strong><span>Personas que viven el problema y quieren operarlo.</span></div></li>
+            <li><i class="dot"></i><div><strong>Etapa temprana</strong><span>De la idea validada al primer crecimiento.</span></div></li>
+          </ul>
+        </div>
+        <div>
+          <div class="head">
+            <div class="eyebrow">Cómo funciona</div>
+            <h2>Del primer correo a construir juntos.</h2>
+          </div>
+          <ol class="steps">
+            <li><strong>Nos cuentas la idea</strong><span>Una descripción breve basta para empezar.</span></li>
+            <li><strong>Conversamos</strong><span>Una llamada para entender el problema, el mercado y al equipo.</span></li>
+            <li><strong>Evaluamos</strong><span>Revisamos si encaja y qué tipo de respaldo tiene sentido.</span></li>
+            <li><strong>Construimos</strong><span>Tecnología, inversión y operación puestas a trabajar.</span></li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <section id="propuesta">
+      <div class="wrap">
+        <div class="contact-box">
+          <div>
+            <div class="eyebrow">Propón un proyecto</div>
+            <h2>¿Tienes un negocio que necesita respaldo?</h2>
+            <p>Cuéntanos qué quieres construir. Leemos cada propuesta y respondemos a las que encajan con lo que buscamos.</p>
+          </div>
+          <form id="proposal">
+            <div class="row">
+              <label>Nombre<input name="nombre" required autocomplete="name"></label>
+              <label>Correo<input name="correo" type="email" required autocomplete="email"></label>
+            </div>
+            <div class="row">
+              <label>Proyecto o empresa<input name="proyecto" required></label>
+              <label>Etapa
+                <select name="etapa">
+                  <option>Idea</option>
+                  <option>Prototipo</option>
+                  <option>Primeros clientes</option>
+                  <option>En crecimiento</option>
+                </select>
+              </label>
+            </div>
+            <label>¿Qué problema resuelve y para quién?<textarea name="descripcion" required></textarea></label>
+            <button class="btn" type="submit">Enviar propuesta <span aria-hidden="true">→</span></button>
+            <div class="note">Se abrirá tu correo con la propuesta lista para enviar.</div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap foot">
+      <img src="assets/backbranding-logo.png" alt="Backbranding">
+      <nav>
+        <a href="https://artical.xyz" target="_blank" rel="noopener">Artical</a>
+        <a href="https://cafista.xyz" target="_blank" rel="noopener">Cafista</a>
+        <a href="#propuesta">Contacto</a>
+      </nav>
+      <div>© <span id="year"></span> Backbranding</div>
+    </div>
+  </footer>
+
+  <script>
+    // Correo que recibe las propuestas
+    const CONTACT_EMAIL = "hola@backbranding.xyz";
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    document.getElementById("proposal").addEventListener("submit", (e) => {
+      e.preventDefault();
+      const f = new FormData(e.target);
+      const subject = `Propuesta de proyecto: ${f.get("proyecto")}`;
+      const body = [
+        `Nombre: ${f.get("nombre")}`,
+        `Correo: ${f.get("correo")}`,
+        `Proyecto: ${f.get("proyecto")}`,
+        `Etapa: ${f.get("etapa")}`,
+        "",
+        f.get("descripcion"),
+      ].join("\n");
+      window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    });
+  </script>
+</body>
+</html>
