@@ -345,7 +345,9 @@
             <h2>¿Tienes un negocio que necesita respaldo?</h2>
             <p>Cuéntanos qué quieres construir. Leemos cada propuesta y respondemos a las que encajan con lo que buscamos.</p>
           </div>
-          <form id="proposal">
+          <form id="proposal" name="propuesta" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+            <input type="hidden" name="form-name" value="propuesta">
+            <p hidden><label>No llenar este campo<input name="bot-field"></label></p>
             <div class="row">
               <label>Nombre<input name="nombre" required autocomplete="name"></label>
               <label>Correo<input name="correo" type="email" required autocomplete="email"></label>
@@ -363,7 +365,7 @@
             </div>
             <label>¿Qué problema resuelve y para quién?<textarea name="descripcion" required></textarea></label>
             <button class="btn" type="submit">Enviar propuesta <span aria-hidden="true">→</span></button>
-            <div class="note">Se abrirá tu correo con la propuesta lista para enviar.</div>
+            <div class="note" role="status">Tus datos solo se usan para responder a tu propuesta.</div>
           </form>
         </div>
       </div>
@@ -388,19 +390,38 @@
 
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    document.getElementById("proposal").addEventListener("submit", (e) => {
+    document.getElementById("proposal").addEventListener("submit", async (e) => {
       e.preventDefault();
-      const f = new FormData(e.target);
-      const subject = `Propuesta de proyecto: ${f.get("proyecto")}`;
-      const body = [
-        `Nombre: ${f.get("nombre")}`,
-        `Correo: ${f.get("correo")}`,
-        `Proyecto: ${f.get("proyecto")}`,
-        `Etapa: ${f.get("etapa")}`,
-        "",
-        f.get("descripcion"),
-      ].join("\n");
-      window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      const form = e.target;
+      const f = new FormData(form);
+      const button = form.querySelector('button[type="submit"]');
+      const note = form.querySelector(".note");
+      button.disabled = true;
+      try {
+        // Netlify Forms recibe el POST y avisa por correo
+        const res = await fetch("/", {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: new URLSearchParams(f).toString(),
+        });
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        form.reset();
+        note.textContent = "¡Gracias! Recibimos tu propuesta y te escribiremos pronto.";
+      } catch {
+        // Sin Netlify (por ejemplo en local) se abre el correo como respaldo
+        const subject = `Propuesta de proyecto: ${f.get("proyecto")}`;
+        const body = [
+          `Nombre: ${f.get("nombre")}`,
+          `Correo: ${f.get("correo")}`,
+          `Proyecto: ${f.get("proyecto")}`,
+          `Etapa: ${f.get("etapa")}`,
+          "",
+          f.get("descripcion"),
+        ].join("\n");
+        window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      } finally {
+        button.disabled = false;
+      }
     });
   </script>
 </body>
